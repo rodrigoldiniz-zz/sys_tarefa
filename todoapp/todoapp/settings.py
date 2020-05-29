@@ -46,7 +46,9 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-THIRD_APPS = []
+THIRD_APPS = [
+    'widget_tweaks',
+]
 
 PROJECT_APPS = [
     'core.apps.CoreConfig',
@@ -134,6 +136,15 @@ USE_L10N = True
 
 USE_TZ = True
 
+#Message custom
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/

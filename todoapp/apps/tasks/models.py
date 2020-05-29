@@ -33,6 +33,7 @@ class Task(models.Model):
     priority = models.CharField('Prioridade', max_length=1, choices=PRIORITY_CHOICES)
     category = models.ManyToManyField(Category)
     status = models.CharField('Status', max_length=2, choices=STATUS_CHOICES)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Tarefa'
