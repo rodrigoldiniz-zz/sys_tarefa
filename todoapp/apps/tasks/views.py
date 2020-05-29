@@ -36,7 +36,7 @@ def edit_category(request, id_category):
         form = CategoryForm(request.POST, instance=category)
         if form.is_valid():
             form.save()
-            return redirect('category:list_categories')
+            return redirect('tasks:list_categories')
     form = CategoryForm(instance=category)
     context['form'] = form
     return render(request, template_name, context)
@@ -49,4 +49,4 @@ def delete_category(request, id_category):
     else:
         messages.error(request, 'Você não tem permissão para excluir esta categoria')
         return redirect('core:home')
-    return redirect('category:list_categories')
+    return redirect('tasks:list_categories')
