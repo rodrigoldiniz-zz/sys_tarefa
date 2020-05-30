@@ -56,7 +56,7 @@ def add_task(request):
     template_name = 'tasks/add_task.html'
     context = {}
     if request.method == 'POST':
-        form = TaskForm(request.POST)
+        form = TaskForm(request.POST, user=request.user)
         if form.is_valid():
             f = form.save(commit=False)
             f.owner = request.user
@@ -68,9 +68,33 @@ def add_task(request):
     return render(request, template_name, context)
 
 
-def tasks_list(request):
-    template_name = 'tasks/tasks_list.html'
+def list_tasks(request):
+    template_name = 'tasks/list_tasks.html'
     context = {}
     tasks = Task.objects.filter(owner=request.user).exclude(status='CD')
     context['tasks'] = tasks
     return render(request, template_name, context)
+
+
+def edit_task(request, id_task):
+    template_name = 'tasks/add_task.html'
+    context = {}
+    task = get_object_or_404(Task, id=id_task, owner=request.user)
+    if request.method == 'POST':
+        form = TaskForm(request.POST, user=request.user, instance=task)
+        if form.is_valid:
+            form.save()
+            return redirect('tasks:list_tasks')
+    form = TaskForm(instance=task, user=request.user)
+    context['form'] = form
+    return render(request, template_name, context)
+
+
+def delete_task(request, id_task):
+    task = Task.objects.get(id=id_task)
+    if task.owner == request.user:
+        task.delete()
+    else:
+        messages.error(request, 'Você não tem permissão para excluir esta Tarefa')
+        return redirect('core:home')
+    return redirect('tasks:list_tasks')

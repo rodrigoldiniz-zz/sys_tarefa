@@ -9,5 +9,7 @@ urlpatterns = [
                path('categorias/editar/<int:id_category>/', views.edit_category, name='edit_category'),
                path('categorias/excluir/<int:id_category>/', views.delete_category, name='delete_category'),
                path('adicionar/', views.add_task, name='add_task'),
-               path('', views.tasks_list, name='tasks_list'),
+               path('editar/<int:id_task>/', views.edit_task, name='edit_task'),
+               path('excluir/<int:id_task>/', views.delete_task, name='delete_task'),
+               path('', views.list_tasks, name='list_tasks'),
                ]
