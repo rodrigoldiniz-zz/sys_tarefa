@@ -29,7 +29,6 @@
             <a class="dropdown-item" href="{% url 'tasks:add_task' %}">Adicionar Tarefas</a>
             <a class="dropdown-item" href="{% url 'tasks:list_tasks' %}">Listar Tarefas</a>
           </div>
-        </>
       </ul>
       <form class="form-inline my-2 my-md-0">
         <input class="form-control" type="text" placeholder="Search" aria-label="Search">
@@ -39,8 +38,8 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.get_full_name }}</a>
           <div class="dropdown-menu" aria-labelledby="dropdown07">
-            <a class="dropdown-item" href="{% url 'tasks:list_tasks' %}">Perfil</a>
-            <a class="dropdown-item" href="{% url 'tasks:list_tasks' %}">Trocar Senha</a>
+            <a class="dropdown-item" href="{% url 'accounts:add_user_profile' %}">Perfil</a>
+            <a class="dropdown-item" href="{% url 'accounts:user_change_password' %}">Trocar Senha</a>
             <a class="dropdown-item" href="{% url 'accounts:user_logout' %}">Sair</a>
       {% endif %}
           </div>

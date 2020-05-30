@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
-from .forms import UserForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
+from .forms import UserForm, UserProfileForm
 
 
 def add_user(request):
@@ -54,7 +54,22 @@ def user_change_password(request):
             messages.success(request, 'Senha alterada com Sucesso')
         else:
             messages.error(request, "Não foi possivel trocar a senha")
-            
     form = PasswordChangeForm(user=request.user)
+    context['form'] = form
+    return render(request, template_name, context)
+
+
+@login_required(login_url='/contas/login/')
+def add_user_profile(request):
+    template_name = 'accounts/add_user_profile.html'
+    context = {}
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            f = form.save(commit=False)
+            f.user = request.user
+            f.save()
+            messages.success(request, "Perfil Alterado com Sucesso!")
+    form = UserProfileForm()
     context['form'] = form
     return render(request, template_name, context)
