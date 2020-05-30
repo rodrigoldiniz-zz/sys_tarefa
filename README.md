@@ -1,1 +1,1 @@
-# Treinamento em Django com Python -- Criação da aplicação Web TodoApp
+# Aplicação desenvolvida durante o treinamento de Desenvolvimento web com Python e Django.
