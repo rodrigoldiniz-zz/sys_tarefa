@@ -2,8 +2,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from .forms import CategoryForm, TaskForm
 from .models import Category, Task
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url='/contas/login/')
 def add_category(request):
     template_name = 'tasks/add_category.html'
     context = {}
@@ -19,6 +21,7 @@ def add_category(request):
     return render(request, template_name, context)
 
 
+@login_required(login_url='/contas/login/')
 def list_categories(request):
     template_name = 'tasks/list_categories.html'
     categories = Category.objects.filter(owner=request.user)
@@ -28,6 +31,7 @@ def list_categories(request):
     return render(request, template_name, context)
 
 
+@login_required(login_url='/contas/login/')
 def edit_category(request, id_category):
     template_name = 'tasks/add_category.html'
     context = {}
@@ -42,6 +46,7 @@ def edit_category(request, id_category):
     return render(request, template_name, context)
 
 
+@login_required(login_url='/contas/login/')
 def delete_category(request, id_category):
     category = Category.objects.get(id=id_category)
     if category.owner == request.user:
@@ -52,6 +57,7 @@ def delete_category(request, id_category):
     return redirect('tasks:list_categories')
 
 
+@login_required(login_url='/contas/login/')
 def add_task(request):
     template_name = 'tasks/add_task.html'
     context = {}
@@ -68,6 +74,7 @@ def add_task(request):
     return render(request, template_name, context)
 
 
+@login_required(login_url='/contas/login/')
 def list_tasks(request):
     template_name = 'tasks/list_tasks.html'
     context = {}
@@ -76,6 +83,7 @@ def list_tasks(request):
     return render(request, template_name, context)
 
 
+@login_required(login_url='/contas/login/')
 def edit_task(request, id_task):
     template_name = 'tasks/add_task.html'
     context = {}
@@ -90,6 +98,7 @@ def edit_task(request, id_task):
     return render(request, template_name, context)
 
 
+@login_required(login_url='/contas/login/')
 def delete_task(request, id_task):
     task = Task.objects.get(id=id_task)
     if task.owner == request.user:

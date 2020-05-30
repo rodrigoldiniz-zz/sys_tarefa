@@ -34,7 +34,16 @@
       <form class="form-inline my-2 my-md-0">
         <input class="form-control" type="text" placeholder="Search" aria-label="Search">
       </form>
-    </div>
+      {% if user.is_authenticated %}
+        <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.get_full_name }}</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown07">
+            <a class="dropdown-item" href="{% url 'tasks:list_tasks' %}">Perfil</a>
+            <a class="dropdown-item" href="{% url 'tasks:list_tasks' %}">Trocar Senha</a>
+            <a class="dropdown-item" href="{% url 'accounts:user_logout' %}">Sair</a>
+      {% endif %}
+          </div>
   </div>
 </nav>
 
