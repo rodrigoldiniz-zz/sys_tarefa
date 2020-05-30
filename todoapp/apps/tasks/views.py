@@ -50,3 +50,27 @@ def delete_category(request, id_category):
         messages.error(request, 'Você não tem permissão para excluir esta categoria')
         return redirect('core:home')
     return redirect('tasks:list_categories')
+
+
+def add_task(request):
+    template_name = 'tasks/add_task.html'
+    context = {}
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            f = form.save(commit=False)
+            f.owner = request.user
+            f.save()
+            form.save_m2m()
+            messages.success(request, 'Tarefa Adicionada com Sucesso')
+    form = TaskForm(user=request.user)
+    context['form'] = form
+    return render(request, template_name, context)
+
+
+def tasks_list(request):
+    template_name = 'tasks/tasks_list.html'
+    context = {}
+    tasks = Task.objects.filter(owner=request.user).exclude(status='CD')
+    context['tasks'] = tasks
+    return render(request, template_name, context)
