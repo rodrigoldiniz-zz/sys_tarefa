@@ -25,7 +25,7 @@ class Task(models.Model):
     STATUS_CHOICES = (
         ('EX', 'Em execução'),
         ('PD', 'Pendente'),
-        ('A', 'Alta'),
+        ('CD', 'Concluída'),
     )
     name = models.CharField('Tarefa', max_length=200)
     description = models.TextField('Descrição')

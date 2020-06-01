@@ -2,6 +2,8 @@ idea
 *.sqlite3
 venv
 *.pyc
+secrets.sh
+venvtodoapp
 todoapp/__pycache__/
 todoapp.pem
 media

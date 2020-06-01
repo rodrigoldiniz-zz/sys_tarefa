@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %}
+
+    {{ block.super }}
+
+{% endblock title %}
+
+
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                        {% for task in tasks %}
+                            {% if forloop.last %} <h2>Tarefas do Dia  {{ task.end_date }} </h2> {% endif %}
+                        {% endfor %}
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Tarefa</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Prioridade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for task in tasks %}
+                            <tr>
+                               <td>{{ task.name }}</td>
+                               <td>{{ task.description }}</td>
+                               <td>{{ task.priority }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock body %}
