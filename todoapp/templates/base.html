@@ -30,8 +30,9 @@
             <a class="dropdown-item" href="{% url 'tasks:list_tasks' %}">Listar Tarefas</a>
           </div>
       </ul>
-      <form class="form-inline my-2 my-md-0" style="margin-right:10px">
-        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+      <form class="form-inline my-2 my-md-0" action={% url 'core:search_tasks' %} style="margin-right:10px">
+        <input class="form-control" name="query" type="text" placeholder="Digite o termo da busca" aria-label="Search" style="margin-right:10px">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="Search">Buscar</button>
       </form>
       {% if user.is_authenticated %}
         <ul class="navbar-nav">
