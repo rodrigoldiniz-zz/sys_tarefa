@@ -2,14 +2,14 @@ idea
 *.sqlite3
 venv
 *.pyc
-secrets.sh
-venvtodoapp
 todoapp/__pycache__/
 todoapp.pem
+.vscode
 media
 static
 uwsgi.ini
 uwsgi_params
+secrets.sh
 *.bak
 *.dat
 *.pid
@@ -19,7 +19,7 @@ local_settings.py
 __pycache__/
 *.py[cod]
 *$py.class
-
+venvtodoapp
 # C extensions
 *.so
 
