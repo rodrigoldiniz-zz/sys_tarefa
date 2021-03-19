@@ -10,7 +10,7 @@ django-widget-tweaks==1.4.8
 greenlet==0.4.15
 idna==2.9
 pep8==1.7.1
-Pillow==7.1.2
+Pillow==8.1.1
 psycopg2-binary==2.8.5
 pycodestyle==2.6.0
 Pygments==2.6.1
